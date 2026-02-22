@@ -339,7 +339,7 @@ func (s *Server) respondWithStatus(w http.ResponseWriter, r *http.Request, msg, 
 		s.policy.Impressum,
 		localizer,
 	)
-	handler := templ.Handler(component, templ.WithStatus(status))
+	handler := internal.NoStoreCache(templ.Handler(component, templ.WithStatus(status)))
 	handler.ServeHTTP(w, r)
 }
 
